@@ -9,9 +9,11 @@ public class Movement : MonoBehaviour
     private Rigidbody2D rb;
     public float jumpSpeed;
     public bool onGround;
+    Animator animator;
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();       
+        rb = GetComponent<Rigidbody2D>();  
+        animator = GetComponent<Animator>();     
     }
 
     // Update is called once per frame
@@ -22,7 +24,15 @@ public class Movement : MonoBehaviour
         rb.velocity = new Vector2(getXAxis * moveSpeed, rb.velocity.y);
         if (getXAxis != 0)
         {
-            transform.localScale = new Vector3(Mathf.Sign(getXAxis), 1, 1);
+            transform.localScale = new Vector3(Mathf.Sign(getXAxis), 1, 1) * Mathf.Abs(transform.localScale.x);
+        }
+        if(rb.velocity.x>0.2f)
+        {
+            animator.SetBool("isRunning", true);
+        }
+        else
+        {
+            animator.SetBool("isRunning", false);
         }
 
         // Jump
