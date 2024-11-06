@@ -14,7 +14,7 @@ public class Shooting : MonoBehaviour
         if(Input.GetKeyDown("space"))
         {
             GameObject bulletClone = Instantiate(Bullet, GunLocation.position, Quaternion.identity);
-            bulletClone.GetComponent<Rigidbody2D>().velocity = new Vector2(Speed, 0);// Direction of firing?
+            bulletClone.GetComponent<Rigidbody2D>().velocity = new Vector2(Speed * transform.localScale.x, 0);// Direction of firing?
         }
     }
 }
