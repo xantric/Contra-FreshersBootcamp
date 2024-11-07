@@ -25,14 +25,19 @@ public class Movement : MonoBehaviour
         if (getXAxis != 0)
         {
             transform.localScale = new Vector3(Mathf.Sign(getXAxis), 1, 1) * Mathf.Abs(transform.localScale.x);
-        }
-        if(rb.velocity.x>0.2f)
-        {
-            animator.SetBool("isRunning", true);
+            animator.SetBool("IsRunning", true);
         }
         else
         {
-            animator.SetBool("isRunning", false);
+            animator.SetBool("IsRunning", false);
+        }
+        if(rb.velocity.x==0)
+        {
+        
+        }
+        else
+        {
+            
         }
 
         // Jump
