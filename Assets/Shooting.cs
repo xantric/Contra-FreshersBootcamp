@@ -7,10 +7,15 @@ public class Shooting : MonoBehaviour
     public GameObject Bullet;
     public float Speed;
     public Transform GunLocation;
+    public PauseMenu pauseMenu;//
 
     // Update is called once per frame
     void Update()
     {
+        if(pauseMenu.isPaused)//
+        {
+            return;
+        }
         if(Input.GetKeyDown("space"))
         {
             GameObject bulletClone = Instantiate(Bullet, GunLocation.position, Quaternion.identity);

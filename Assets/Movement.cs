@@ -10,7 +10,9 @@ public class Movement : MonoBehaviour
     public float jumpSpeed;
     public bool onGround;
     Animator animator;
-    void Start()
+    public PauseMenu pauseMenu;//
+    public AudioSource jumpSound;
+        void Start()
     {
         rb = GetComponent<Rigidbody2D>();  
         animator = GetComponent<Animator>();     
@@ -19,6 +21,11 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(pauseMenu.isPaused)//
+        {
+            return;
+        }
+
         // Horizontal Movement
         float getXAxis = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(getXAxis * moveSpeed, rb.velocity.y);
@@ -36,6 +43,7 @@ public class Movement : MonoBehaviour
         float getYAxis = Input.GetAxisRaw("Vertical");
         if(getYAxis>0 && onGround)
         {
+            jumpSound.Play();
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed + rb.velocity.y);
         }
     }
