@@ -31,14 +31,6 @@ public class Movement : MonoBehaviour
         {
             animator.SetBool("IsRunning", false);
         }
-        if(rb.velocity.x==0)
-        {
-        
-        }
-        else
-        {
-            
-        }
 
         // Jump
         float getYAxis = Input.GetAxisRaw("Vertical");

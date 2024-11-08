@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Callbacks;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
@@ -10,6 +11,7 @@ public class EnemyMovement : MonoBehaviour
 
     private Rigidbody2D rb;
     private Transform playerTransform;
+    Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -17,11 +19,15 @@ public class EnemyMovement : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         playerTransform = player.transform;
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(rb.velocity != new Vector2(0,0))     animator.SetBool("IsRunning", true);
+        else                                    animator.SetBool("IsRunning", false);
+
         if(playerTransform == null)
         {
             Debug.Log("Shutting Down enemy");
@@ -57,4 +63,5 @@ public class EnemyMovement : MonoBehaviour
             onGround = false;
         }
     }
+
 }
